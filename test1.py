@@ -34,7 +34,7 @@ def get_prediction():
     return predicted_class
 
 
-def get_user_choice(predicted_class_index): 
+def get_user_choice(predicted_class_index): # fucntion takes the predicted_class_index and returns the coressponding choice
     classes = ["rock", "paper", "scissors", "nothing"]
     if predicted_class_index == 0:
         user_choice = classes[0]
@@ -47,12 +47,13 @@ def get_user_choice(predicted_class_index):
     return user_choice
 
 
-def get_computer_choice():
+def get_computer_choice():# fuc tion setermins the computers choice by randomly selecting one of the 3 choices
     possible_plays = ['rock', 'paper', 'scissors']
     computer_choice = random.choice(possible_plays)
     return computer_choice
 
-def get_winner(computer_choice, user_choice):
+def get_winner(computer_choice, user_choice): # fucntion determins the winnere by evaluating the choice made byt he user and computer.
+    # returning coressponding true or false depending on whetehr the user won or not
     print(f"Computer's choice: {computer_choice}")
     print(f"You chose: {user_choice}")
     if computer_choice == user_choice: # tie
@@ -78,11 +79,14 @@ def get_winner(computer_choice, user_choice):
         return False
     
 def play_game():
+    '''
+    function used to play game contains conditions that determin who wins the game as well as vaiable to keep score and round count
+    '''
 
-    user_wins = 0
-    computer_wins = 0
-    rounds_to_win = 3
-    round_counter = 1
+    user_wins = 0 # number of user wins
+    computer_wins = 0 # number of computer wins
+    rounds_to_win = 3 # number of wins needed by either competiter to win
+    round_counter = 1 # current round
     while (user_wins < rounds_to_win) or (computer_wins < rounds_to_win):
         print(f"Round:{round_counter}")
         countdown_duration = 3  # countdown duration in seconds
@@ -96,9 +100,9 @@ def play_game():
         print("Go")
 
         
-        user_choice = get_prediction()
-        computer_choice = get_computer_choice()
-        round_winner = get_winner(computer_choice, user_choice)
+        user_choice = get_prediction() # users choice os stored in this cariable
+        computer_choice = get_computer_choice() # computers choice is stored in this variable
+        round_winner = get_winner(computer_choice, user_choice) # the winner of the round is stored in thos variable
 
         if round_winner is False:
             computer_wins += 1
@@ -111,11 +115,11 @@ def play_game():
         else: # user losees 
             round_counter += 1
             
-        print("Current Score ")
+        print("Current Score ") 
         print(f" Computer: {computer_wins} | User: {user_wins}")
 
     
-        if user_wins == rounds_to_win:
+        if user_wins == rounds_to_win: # condtions to end the gane
             print("Congratulations! You won the game!")
             cv2.destroyAllWindows()
             break
